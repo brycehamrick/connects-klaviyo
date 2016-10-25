@@ -288,7 +288,7 @@ if(!class_exists('Smile_Mailer_Klaviyo')){
 					$post_args = array(
 						'api_key' => $klaviyo_api_key,
 						'email' => $_POST['param']['email'],
-						'confirm_optin' => false
+						'confirm_optin' => "false"
 					);
 					if (isset( $_POST['param']['first_name'] )) {
 						$properties = array();
