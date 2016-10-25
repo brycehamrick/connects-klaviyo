@@ -288,6 +288,7 @@ if(!class_exists('Smile_Mailer_Klaviyo')){
 					$post_args = array(
 						'api_key' => $klaviyo_api_key,
 						'email' => $_POST['param']['email'],
+						'confirm_optin' => false
 					);
 					if (isset( $_POST['param']['first_name'] )) {
 						$properties = array();
@@ -302,14 +303,12 @@ if(!class_exists('Smile_Mailer_Klaviyo')){
 					curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, 0 );
 
 					$response = curl_exec($ch);
-					var_dump($response);
 					$http_response_error = curl_error($ch);
 
 					if( $http_response_error != '' )  {
 						if( isset( $_POST['source'] ) ) {
 	        		return false;
 	        	} else {
-	        		var_dump($http_response_error);
 	        		if(strpos($http_response_error, '404')){
 	        			$errorMsg =  __('ListId is not present', 'smile' );
 	        		}else{
